@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <title>{{title}}</title>
+</head>
+<body>
+<!-- Begin page content -->
+<main role="main" class="container">
+    <table border=0 width=100%>
+        {% if current_user.is_authenticated %}
+        <p align="right"><a class="navbar-brand" href="/logout">Выйти</a></p>
+        {% endif %}
+        <td>
+            {% if current_user.is_authenticated %}
+            <h4>Здравствуй {{ current_user.name }}</h4>
+            {% endif %}
+            <div>
+                <table border="0">
+                    <tr>
+                        <td><a class="navbar-brand" href="/information">Об игре</a></td>
+                        <td><a class="navbar-brand" href="/maps">Карты</a></td>
+                    </tr>
+                </table>
+            </div>
+            {% if current_user.is_authenticated %}
+            <div>
+                <table border="0">
+                    <tr>
+                        <td><a class="navbar-brand" href="/">Новости</a></td>
+                        <td><a class="navbar-brand" href="/records">Рекорды</a></td>
+                        <td><a class="navbar-brand" href="/download">Скачать</a></td>
+                    </tr>
+                </table>
+            </div>
+            {% else %}
+            <p>
+                <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
+                <a class="btn btn-success" href="/login">Войти</a>
+            </p>
+            {% endif %}
+        </td>
+        <td>
+            <p><img src="static/img/fn.jpg" width=100%
+                    alt='Игра для настоящий ценителей!(Если вы не цунитель, то всеровно играйте)'>
+            </p>
+        </td>
+    </table>
+    {% block content %}{% endblock %}
+</main>
+</body>
+<footer>
+    <br>
+    <center>
+        Спасибо за то что посетили наш сайт. В скоре вы сможете связаться с нами. Наслаждайтесь
+        игрой.
+    </center>
+</footer>
+</html>
